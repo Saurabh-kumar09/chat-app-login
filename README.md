@@ -8,5 +8,5 @@
 
 NOTE : Make sure you have expo go app version 0.46
 
-[Expo workbase bare](https://docs.expo.dev/bare/overview/)
+[Expo workbase bare](https://docs.expo.dev/bare/overview/) <br>
 [Clerk auth expo](https://clerk.com/docs/quickstarts/expo)
