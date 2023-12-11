@@ -1,35 +1,42 @@
 import React from "react";
-import { SafeAreaView, Text, StyleSheet,View } from "react-native";
-import { ClerkProvider, SignedIn, SignedOut } from "@clerk/clerk-expo";
-import SignUpScreen from "./components/SignUpScreen";
-// import SignInScreen from "./components/SignInScreen";
-import Constants from "expo-constants"
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Home from "./screens/Home";
+import PhoneSignIn from "./screens/Login";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const clerkPublishableKey = Constants.expoConfig.extra.clerkPublishableKey;
+const Stack = createNativeStackNavigator();
 
- 
 export default function App() {
   return (
-    <ClerkProvider publishableKey={clerkPublishableKey}>
-      <SafeAreaView style={styles.container}>
-        <SignedIn>
-          <View>
-        <Text>You are Signed in</Text>
-        </View>
-        </SignedIn>
-        <SignedOut>
-       <SignUpScreen/>
-        </SignedOut>
-      </SafeAreaView>
-    </ClerkProvider>
+    <SafeAreaView style={styles.container}>
+      <StatusBar style="light" backgroundColor="#202C33" />
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={PhoneSignIn}
+            options={{ headerShown: false }}
+          />
+
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaView>
   );
 }
- 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff', // You can set the background color here
   },
 });
